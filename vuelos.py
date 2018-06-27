@@ -15,15 +15,23 @@ class Vuelos (object):
         self.listaPasajeros = []
         self.listaTripulacion = []
 
+    def mostrarPasajeros(self):
+        listaDNIs = []
+        for item in self.listaPasajeros:
+            listaDNIs.append(item.DNI)
+
+        return listaDNIs
+
+
     def getPasajeros(self):
         return self.listaPasajeros
 
     def getTripulacion(self):
-        listaApellidos = []
+        listaDNIs = []
         for item in self.listaTripulacion:
-            listaApellidos.append(item.apellido)
+            listaDNIs.append(item.DNI)
 
-        return listaApellidos
+        return listaDNIs
 
     def getCantTripulacion(self):
         return len(self.listaTripulacion)
@@ -40,7 +48,23 @@ class Vuelos (object):
 
         return nombrePasajeroMenor
 
+    def PasajerosVipOEspeciales(self):   #Punto 6
+        pasajerosVip = []
+
+        for item in self.listaPasajeros:
+            if item.VIP == 1 or item.necesidades_esp != "":
+                pasajerosVip.append(item.nombre + ' ' + item.apellido + ' ' + item.DNI)
+
+        return pasajerosVip
+
+    def IdiomasPorVuelo(self): #Punto 7
+        idiomasHablados = []
+
+        for item in self.listaTripulacion:
+            if item.tipo == 'Servicio':
+                for item2 in item.listaIdiomas:
+                    if item2 not in idiomasHablados:
+                        idiomasHablados.append(item2)
 
 
-
-
+        return idiomasHablados
